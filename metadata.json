@@ -1,0 +1,6 @@
+{
+  "name": "Klook — Things to do in Kuala Lumpur",
+  "description": "Discover and book Kuala Lumpur attractions, tours, theme parks, food walks, and airport transfers in Singapore Dollars (SGD).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
