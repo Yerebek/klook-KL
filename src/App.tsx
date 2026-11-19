@@ -111,6 +111,32 @@ export default function App() {
     }
   };
 
+  const handleQuickBook = (activity: Activity) => {
+    const defaultPkg = activity.packages[0];
+    if (!defaultPkg) {
+      setActiveActivity(activity);
+      return;
+    }
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const defaultDate = tomorrow.toISOString().split('T')[0];
+
+    handleAddToCart(
+      {
+        cartItemId: `${activity.id}-${defaultPkg.id}-${defaultDate}`,
+        activity,
+        packageId: defaultPkg.id,
+        packageName: defaultPkg.name,
+        date: defaultDate,
+        adults: 1,
+        children: 0,
+        adultPriceSgd: defaultPkg.adultPriceSgd,
+        childPriceSgd: defaultPkg.childPriceSgd,
+      },
+      true
+    );
+  };
+
   const handleUpdateGuests = (
     cartItemId: string,
     field: 'adults' | 'children',
@@ -332,6 +358,7 @@ export default function App() {
                   isWishlisted={wishlistIds.includes(activity.id)}
                   onToggleWishlist={handleToggleWishlist}
                   onSelect={setActiveActivity}
+                  onQuickBook={handleQuickBook}
                 />
               ))}
             </div>
